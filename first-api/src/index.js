@@ -1,10 +1,24 @@
 const http = require('http');
+const routes = require('./routes');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {
-    'Content-type': 'text/html',
+const server = http.createServer((request, response) => {
+  const method = request.method;
+  const endpoint = request.url;
+
+  console.log(`Request method: ${method} | Endpoint : ${endpoint}`);
+
+  const route = routes.find((routeObj) => {
+    routeObj.endpoint === endpoint && routeObj.method === method;
   });
-  res.end('<h1>Hello World!</h1>');
+
+  if (route) {
+    route.handler(request, response);
+  } else {
+    response.writeHead(404, {
+      'Content-type': 'text/html',
+    });
+    response.end(`Cannot ${method} ${endpoint}`);
+  }
 });
 
 const port = 3000;
