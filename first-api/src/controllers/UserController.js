@@ -23,4 +23,20 @@ module.exports = {
     }
     response.send(200, user);
   },
+  createUser(request, response) {
+    const { body } = request;
+    const lastUserId = users[users.length - 1].id;
+
+    const newUser = {
+      id: lastUserId + 1,
+      name: body.name,
+    };
+
+    if (newUser.name === body.name) {
+      throw new Error('User already exists with name');
+    }
+
+    users.push(newUser);
+    response.send(200, newUser);
+  },
 };
