@@ -17,3 +17,11 @@
 - Modulo: MyContacts Front-end
 
 - Modulo: React Hooks + Ebook
+
+### Techs
+
+> Node.js 
+
+> React.js
+
+Made with 🖤 by [williamkoller](https://github.com/williamkoller) :wave:
