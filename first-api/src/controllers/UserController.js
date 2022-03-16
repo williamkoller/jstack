@@ -66,4 +66,16 @@ module.exports = {
 
     response.send(200, { id, name });
   },
+  deleteUser(request, response) {
+    let { id } = request.params;
+
+    id = Number(id);
+
+    users = users.filter((user) => user.id !== id);
+
+    response.send(200, {
+      deleted: true,
+      message: 'User deleted with successfully.',
+    });
+  },
 };
