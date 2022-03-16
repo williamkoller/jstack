@@ -2,9 +2,18 @@
 
 # JStack
 
-### Techs
+- Modulo: Primeiros passos com Node.js
 
-> Node.js
+- Modulo: Node.js com Express
 
-> React.js
+- Modulo: JavaScript Moderno
 
+- Modulo: Fundamentos de React
+
+- Modulo: Class Components
+
+- Modulo: React Router V5
+
+- Modulo: MyContacts Front-end
+
+- Modulo: React Hooks + Ebook
