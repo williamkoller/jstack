@@ -3,19 +3,19 @@
 `printDouble.js`
 
 ```
-  function multiply(a, b) {
-    return a * b;
-  }
+function multiply(a, b) {
+  return a * b;
+}
 
-  function double(number) {
-    return multiply(number, 2);
-  }
+function double(number) {
+  return multiply(number, 2);
+}
 
-  function printDouble(number) {
-    const result = double(number);
-    console.log(result);
-  }
+function printDouble(number) {
+  const result = double(number);
+  console.log(result);
+}
 
-  printDouble(2);
+printDouble(2);
 
 ```
