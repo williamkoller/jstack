@@ -1,0 +1,8 @@
+{
+  "name": "mycontacts",
+  "version": "1.0.0",
+  "description": "API to store contacts",
+  "main": "src/index.js",
+  "author": "William Koller",
+  "license": "MIT"
+}
