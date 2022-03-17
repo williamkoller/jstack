@@ -4,5 +4,11 @@
   "description": "API to store contacts",
   "main": "src/index.js",
   "author": "William Koller",
-  "license": "MIT"
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
