@@ -1,8 +1,10 @@
 const statusCode = require('../../enum/status-code/statusCode');
+const ContactsRepository = require('../repositories/ContactsRepository');
 
 class ContactController {
-  index(request, response) {
-    response.status(statusCode.OK).send('Send from Contact Controller');
+  async index(request, response) {
+    const contacts = await ContactsRepository.findAll();
+    response.status(statusCode.OK).json(contacts);
   }
 
   show() {
