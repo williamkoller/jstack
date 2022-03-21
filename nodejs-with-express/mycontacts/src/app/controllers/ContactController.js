@@ -12,7 +12,7 @@ class ContactController {
     const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
-      response
+      return response
         .status(statusCode.NOT_FOUND)
         .json({ error: 'Contact not found.' });
     }
@@ -92,7 +92,7 @@ class ContactController {
     const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
-      response
+      return response
         .status(statusCode.NOT_FOUND)
         .json({ error: 'Contact not found.' });
     }
