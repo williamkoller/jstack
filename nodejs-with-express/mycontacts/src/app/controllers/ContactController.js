@@ -18,8 +18,31 @@ class ContactController {
     response.status(statusCode.OK).json(contact);
   }
 
-  store() {
+  async store(request, response) {
+    const {
+      name, email, phone, categoryId,
+    } = request.body;
 
+    if (!name) {
+      return response
+        .status(statusCode.BAD_REQUEST)
+        .json({ error: 'Name is required' });
+    }
+
+    const contactExists = await ContactsRepository.findByEmail(email);
+
+    if (contactExists) {
+      return response.status(statusCode.CONFLICT).json({ error: 'This e-mail is already been taken.' });
+    }
+
+    const contact = await ContactsRepository.create({
+      name,
+      email,
+      phone,
+      categoryId,
+    });
+
+    response.status(statusCode.OK).json(contact);
   }
 
   update() {
