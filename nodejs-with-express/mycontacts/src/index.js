@@ -7,6 +7,8 @@ const appUrl = process.env.APP_URL;
 
 const app = express();
 
+app.use(express.json());
+
 app.use(routers);
 
 app.listen(port, () => console.log(`Server started at ${appUrl}:${port}`));
