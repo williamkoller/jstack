@@ -12,7 +12,9 @@ class ContactController {
     const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
-      response.status(statusCode.NOT_FOUND).json({ error: 'Contact not found.' });
+      response
+        .status(statusCode.NOT_FOUND)
+        .json({ error: 'Contact not found.' });
     }
 
     response.status(statusCode.OK).json(contact);
@@ -32,7 +34,9 @@ class ContactController {
     const contactExists = await ContactsRepository.findByEmail(email);
 
     if (contactExists) {
-      return response.status(statusCode.CONFLICT).json({ error: 'This e-mail is already been taken.' });
+      return response
+        .status(statusCode.CONFLICT)
+        .json({ error: 'This e-mail is already use.' });
     }
 
     const contact = await ContactsRepository.create({
@@ -45,8 +49,42 @@ class ContactController {
     response.status(statusCode.OK).json(contact);
   }
 
-  update() {
+  async update(request, response) {
+    const { id } = request.params;
+    const {
+      name, email, phone, categoryId,
+    } = request.body;
 
+    const contactExists = await ContactsRepository.findById(id);
+
+    if (!contactExists) {
+      return response
+        .status(statusCode.NOT_FOUND)
+        .json({ error: 'Contact not found.' });
+    }
+
+    if (!name) {
+      return response
+        .status(statusCode.BAD_REQUEST)
+        .json({ error: 'Name is required' });
+    }
+
+    const contactByEmail = await ContactsRepository.findByEmail(email);
+
+    if (contactByEmail && contactByEmail.id !== id) {
+      return response
+        .status(statusCode.CONFLICT)
+        .json({ error: 'This e-mail is already use.' });
+    }
+
+    const contact = await ContactsRepository.update(id, {
+      name,
+      email,
+      phone,
+      categoryId,
+    });
+
+    response.status(statusCode.OK).json(contact);
   }
 
   async delete(request, response) {
